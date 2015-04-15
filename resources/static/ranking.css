@@ -1,0 +1,124 @@
+﻿/* Isotope */
+.isotope,
+.isotope .isotope-item {
+  /* change duration value to whatever you like */
+  -webkit-transition-duration: 0.8s;
+     -moz-transition-duration: 0.8s;
+      -ms-transition-duration: 0.8s;
+       -o-transition-duration: 0.8s;
+          transition-duration: 0.8s;
+}
+
+.isotope {
+  -webkit-transition-property: height, width;
+     -moz-transition-property: height, width;
+      -ms-transition-property: height, width;
+       -o-transition-property: height, width;
+          transition-property: height, width;
+}
+
+.isotope .isotope-item {
+  -webkit-transition-property: -webkit-transform, opacity;
+     -moz-transition-property:    -moz-transform, opacity;
+      -ms-transition-property:     -ms-transform, opacity;
+       -o-transition-property:      -o-transform, opacity;
+          transition-property:         transform, opacity;
+}
+
+/**** disabling Isotope CSS3 transitions ****/
+
+.isotope.no-transition,
+.isotope.no-transition .isotope-item,
+.isotope .isotope-item.no-transition {
+  -webkit-transition-duration: 0s;
+     -moz-transition-duration: 0s;
+      -ms-transition-duration: 0s;
+       -o-transition-duration: 0s;
+          transition-duration: 0s;
+}
+
+
+/* Statements */
+.adc-ranking-isotope .statement 
+{   
+    /* Element */
+	display:block;
+	margin:0 0 5px 0;
+    vertical-align:middle;
+	cursor:pointer;
+	/*behavior:url(PIE.htc);*/
+	
+	/* Decoration */
+	border: 1px solid #000;
+	background: #fff; 
+	/*background: -webkit-gradient(linear, 0 0, 0 100%, from( #fff ) to( #cecece )); 
+	background: -webkit-linear-gradient( #fff , #cecece ); 
+	background: -moz-linear-gradient( 	 #fff , #cecece ); 
+	background: -ms-linear-gradient( 	 #fff , #cecece ); 
+	background: -o-linear-gradient( 	 #fff , #cecece ); 
+	background: linear-gradient( 		 #fff , #cecece ); 	
+	-pie-background: linear-gradient(	 #fff , #cecece ); */
+	
+	/* Effects */
+	-webkit-border-radius:	5px 5px 5px 5px; 
+	-moz-border-radius:		5px 5px 5px 5px; 
+	-khtml-border-radius:	5px 5px 5px 5px; 
+	border-radius:			5px 5px 5px 5px; 
+	
+	-webkit-transform: translate3d(0, 0, 0);
+	-webkit-backface-visibility: hidden;
+	-webkit-perspective: 1000;
+	
+	/* disable highlight text */
+	-moz-user-select: none; 
+	-webkit-user-select: none; 
+	-ms-user-select:none; 
+	user-select:none;
+	
+	position:relative;
+}
+
+.adc-ranking-isotope .statement_text 
+{ 
+	display:block;
+	padding:10px;
+	font-size:1.0em;
+	color:#000;
+}
+.adc-ranking-isotope .statement img {
+	display:inline-block; 
+	margin:5px;
+}
+.adc-ranking-isotope .statement img.left 
+{
+    float:left;
+}
+.adc-ranking-isotope .statement img.right 
+{
+    float:right;
+}
+
+.adc-ranking-isotope .rank_text 
+{
+    /* Element */
+    display:inline-block;
+    /*float:right;*/
+    margin:0px 0px 0px 0px;
+	padding:10px;
+	width:15px;
+	position:absolute;
+	top:0px; right:0px;
+	
+    /* Typo */
+    color:#fff;
+    font-size:1.0em;
+    font-weight:bold;
+}
+
+.adc-ranking-isotope .rerankContainer { display:block; width:100%; height:100%; text-align:center; position:absolute; top:0px; left:0px; }
+.adc-ranking-isotope .upRank { 
+	display:inline-block; width:20px; height:100%; background-image:url(uparrow.png); background-position:top; background-repeat:no-repeat; margin-right:5px; zoom:1; *display:inline;  
+}
+.adc-ranking-isotope .downRank { 
+	display:inline-block; width:20px; height:100%; background-image:url(downarrow.png); background-position:top; background-repeat:no-repeat; zoom:1; *display:inline; 
+}

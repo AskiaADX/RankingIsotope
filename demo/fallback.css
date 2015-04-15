@@ -1,0 +1,17 @@
+﻿.adc-ranking-isotope ul,
+.adc-ranking-isotope li
+{
+    margin  : 0;
+    padding : 0;
+}
+.adc-ranking-isotope ul
+{
+    list-style-type: none;
+}
+.adc-ranking-isotope label 
+{
+    display :inline-block;
+    min-width: 100px;
+    width: 100px;
+    margin-left: 5px;
+}

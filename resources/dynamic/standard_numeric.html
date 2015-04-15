@@ -1,0 +1,34 @@
+﻿<!-- standard_numeric.html -->
+{%
+Dim inputName = CurrentQuestion.InputName()
+Dim inputValue
+Dim caption
+Dim inputId
+Dim image
+
+Dim i
+Dim ar = CurrentQuestion.ParentLoop.AvailableResponses
+
+For i = 1 To ar.Count
+    inputValue  = ar[i].InputValue()
+    caption     = ar[i].Caption
+    image		= ar.ResourceURL[i]
+%}
+<div class="istope-item statement" data-value="{%= inputValue %}" unselectable='on' onselectstart='return false;' onmousedown='return false;'>
+	{% IF image <> "" Then %}
+		<img src="{%= image %}" />
+    {% EndIF %}
+    <span class="rank_text"></span>
+	<span class="statement_text">{%:= caption %}</span>
+	<div style="clear:both"></div>
+</div>
+{% Next %}
+<div style="clear:both"></div>
+{%
+ar = CurrentQuestion.ParentLoop.AvailableResponses
+
+For i = 1 To ar.Count 
+    inputName = CurrentQuestion.iteration(ar[i].Index).InputName()
+%}
+<input type="hidden" name="{%= inputName%}" id="{%= inputName%}" value="{%= CurrentQuestion.iteration(ar[i].Index).InputValue() %}" />
+{% Next %}

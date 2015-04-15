@@ -1,0 +1,36 @@
+﻿<!-- fallback_numeric.html -->
+<table cellpadding="5" cellspacing="0" border="0">
+{%
+Dim i 
+Dim ar = CurrentQuestion.ParentLoop.AvailableResponses
+Dim inputId
+Dim inputName
+Dim inputValue
+Dim rcaption
+Dim resource
+Dim alt = ""
+Dim minValue
+Dim maxValue
+
+For i = 1 To ar.Count 
+	rcaption  = ar[i].Caption
+    resource = ar.ResourceURL[i]
+    inputName = CurrentQuestion.Iteration(ar[i].Index).InputName()
+    inputValue = CurrentQuestion.Iteration(ar[i].Index).InputValue()
+    inputId = inputName.replace(" ", "_")
+%}
+<tr class="{%= alt %}">
+	<td align="left">
+		{% IF (resource <> "") Then %}
+			<img src="{%= resource %}" />
+		{% EndIf %}
+        {% 
+            IF (alt = "") Then alt = "alt"
+            Else alt = "" 
+            EndIf
+        %}
+    	<p>{%:= rcaption %}</p>
+	</td>
+	<td align="center"><input type="number" name="{%= inputName%}" id="{%= inputId %}" min="1" max="{%= ar.Count %}" value="{%= inputValue %}" /></td></tr>
+{% Next %}
+</table>

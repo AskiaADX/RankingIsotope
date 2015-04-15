@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Askia for Web</title>
+        <link rel="stylesheet" type="text/css" href="ranking.css" />
+        <style type="text/css">
+            #adc_2 .statement.ranked 
+            {
+                /* Decoration */	
+	            background: rgb(0,125,198); 
+	            background: -webkit-gradient(linear, 0 0, 0 100%, from(  rgb(0,125,198) ) to(  rgb(0,125,198) ));
+	            background: -webkit-linear-gradient(  rgb(0,125,198) ,  rgb(0,125,198) ); 
+	            background: -moz-linear-gradient( 	  rgb(0,125,198) ,  rgb(0,125,198) ); 
+	            background: -ms-linear-gradient( 	  rgb(0,125,198) ,  rgb(0,125,198) ); 
+	            background: -o-linear-gradient( 	  rgb(0,125,198) ,  rgb(0,125,198) ); 
+	            background: linear-gradient( 		  rgb(0,125,198) ,  rgb(0,125,198) ); 
+	            -pie-background: linear-gradient(	  rgb(0,125,198) ,  rgb(0,125,198) ); 
+            }
+
+            #adc_2 .rank_text 
+            {
+                /* Element */
+                display:inline-block;
+                float:right;
+                margin:0px 0px 0px 0px;
+	            padding:10px;
+	            width:15px;
+	
+                /* Typo */
+                color: rgb(255,255,255) ;
+                font-size:1.0em;
+                font-weight:bold;
+            }
+
+            #adc_2 .statement.ranked .statement_text 
+            {
+                color:rgb(255,255,255); 
+            }
+        </style>
+	</head>
+	<body>
+       <div id="adc_2" class="adc-ranking-isotope">
+            <input type="hidden" name="C1" id="C1" value=""  />    
+            <input type="hidden" name="C3" id="C3" value=""  />
+            <input type="hidden" name="C5" id="C5" value=""  />
+            <input type="hidden" name="C7" id="C7" value=""  />
+            <input type="hidden" name="C9" id="C9" value=""  />
+            <div id="jsObj2"></div>
+        </div>
+        <!--[if lt IE 10]>
+            <script src="es5-shim.min.js"></script>
+        <![endif]-->          
+        <script type="text/javascript" src="jquery-1.8.3.min.js"></script>
+        <script type="text/javascript" src="jquery.isotope.min.js"></script>
+        <script type="text/javascript" src="ranking.js"></script>
+        <script type="text/javascript">
+            $(document).ready(function () {
+                $.adcRanking({
+                    target : 'jsObj2',
+                    width : 400,
+                    imageAlign : 'right',
+                    imageWidth : 100,
+                    imageHeight : 100,
+                    setMax : 3,
+                    items : [
+                        {caption : 'A', element : $('#C1')},
+                        {caption : 'B', element : $('#C3')},
+                        {caption : 'C', element : $('#C5')},
+                        {caption : 'D', element : $('#C7')},
+                        {caption : 'E', element : $('#C9')}
+                    ]
+                });
+            });
+        </script>
+	</body>
+</html>

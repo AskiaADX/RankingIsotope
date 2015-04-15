@@ -1,0 +1,26 @@
+﻿.adc-ranking-isotope ul,
+.adc-ranking-isotope li
+{
+    margin  : 0;
+    padding : 0;
+}
+.adc-ranking-isotope ul
+{
+    list-style-type: none;
+}
+.adc-ranking-isotope label 
+{
+    display :inline-block;
+    min-width: 100px;
+    width: 100px;
+    margin-left: 5px;
+}
+input[type=number] { 
+	height:30px; width:30px; text-align:center; 
+	-webkit-border-radius:5px; 
+	-moz-border-radius:5px; 
+	-khtml-border-radius:5px; 
+	border-radius:5px;
+	border:2px solid #cccccc;
+}
+tr.alt td { background:#f9f9f9; }
