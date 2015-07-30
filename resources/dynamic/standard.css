@@ -57,6 +57,15 @@ Dim controlAlign =CurrentADC.PropValue("controlAlign")
 Dim rankMoveArrowColour =CurrentADC.PropValue("rankMoveArrowColour")
 
 Dim fontSize =CurrentADC.PropValue("fontSize")
+
+Dim otherColourPrimary =CurrentADC.PropValue("otherColourPrimary")
+Dim otherColourSecondary =CurrentADC.PropValue("otherColourSecondary")
+Dim otherFontColour =CurrentADC.PropValue("otherFontColour")
+Dim otherBorderColour =CurrentADC.PropValue("otherBorderColour")
+Dim otherBorderThickness =CurrentADC.PropValue("otherBorderThickness")
+Dim otherBorderStyle =CurrentADC.PropValue("otherBorderStyle")
+Dim otherShadow =CurrentADC.PropValue("otherShadow")
+Dim otherBorderRadius =CurrentADC.PropValue("otherBorderRadius")
 %}
 
 /* General */
@@ -258,3 +267,35 @@ Dim fontSize =CurrentADC.PropValue("fontSize")
 }
 
 #adc_{%= CurrentADC.InstanceId%} .upRank, #adc_{%= CurrentADC.InstanceId%} .downRank { background-position:{%= rankMoveArrowColour%}; }
+
+#adc_{%= CurrentADC.InstanceId%} .otherText { 
+	
+	font-size:{%= fontSize%};
+	color: rgb({%= otherFontColour%});
+	
+	/* Decoration */
+	{% IF CurrentADC.PropValue("otherBorderThickness") = "none" Then %}
+		border: none;
+	{% Else %}
+		border: {%= otherBorderThickness%} {%= otherBorderStyle%} rgb({%= otherBorderColour%});
+	{% EndIF %}	
+	background: rgb({%= otherColourPrimary%}); 
+	background: -moz-linear-gradient(top,  rgb({%= otherColourPrimary%}) 0%, rgb({%= otherColourSecondary%}) 100%); /* FF3.6+ */
+	background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgb({%= otherColourPrimary%})), color-stop(100%,rgb({%= otherColourSecondary%}))); /* Chrome,Safari4+ */
+	background: -webkit-linear-gradient(top,  rgb({%= otherColourPrimary%}) 0%,rgb({%= otherColourSecondary%}) 100%); /* Chrome10+,Safari5.1+ */
+	background: -o-linear-gradient(top,  rgb({%= otherColourPrimary%}) 0%,rgb({%= otherColourSecondary%}) 100%); /* Opera 11.10+ */
+	background: -ms-linear-gradient(top,  rgb({%= otherColourPrimary%}) 0%,rgb({%= otherColourSecondary%}) 100%); /* IE10+ */
+	background: linear-gradient(to bottom,  rgb({%= otherColourPrimary%}) 0%,rgb({%= otherColourSecondary%}) 100%); /* W3C */
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr={%= otherColourPrimary.ToHexa()%}, endColorstr={%= otherColourSecondary.ToHexa()%},GradientType=0 ); /* IE6-8 */
+	
+	/* Effects */
+	-webkit-border-radius:	{%= otherBorderRadius%}; 
+	-moz-border-radius:		{%= otherBorderRadius%}; 
+	-khtml-border-radius:	{%= otherBorderRadius%}; 
+	border-radius:			{%= otherBorderRadius%};
+	
+	-webkit-box-shadow: {%= otherShadow%};
+	-moz-box-shadow: {%= otherShadow%};
+	box-shadow: {%= otherShadow%};
+	
+}

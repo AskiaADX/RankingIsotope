@@ -5,10 +5,10 @@
          version="2.0.0"
          askiaCompat="5.3.3">
   <info>
-    <name>adc2-rankingIsotope</name>
+    <name>adc2-rankingIsotopeOther</name>
     <guid>918f40bc-c410-47bf-8cef-233d411c142f</guid>
-    <version>1.1.6</version>
-    <date>2013-07-04</date>
+    <version>1.0.0</version>
+    <date>2015-07-03</date>
     <description>
       <![CDATA[
         v1.1.2 - removed CSS3 Pie
@@ -44,7 +44,7 @@
     <output id="standard">
       <description><![CDATA[Output when the browser support Javascript]]></description>
       <condition><![CDATA[Browser.Support("javascript")]]></condition>
-      <content fileName="ranking.css" type="css" mode="static" position="head" />
+      <content fileName="rankingOther.css" type="css" mode="static" position="head" />
       <content fileName="standard.css" type="css" mode="dynamic" position="head" />
       
       <content fileName="standard.html" type="html" mode="dynamic" position="placeholder" />
@@ -63,7 +63,7 @@
 	  <content fileName="jquery-ui-1.10.4.custom.min.js" type="javascript" mode="share" position="head"/>
 	  <content fileName="jquery.ui.touch-punch.min.js" type="javascript" mode="share" position="head"/>
       <content fileName="jquery.isotope.min.js" type="javascript" mode="static" position="head"/>
-      <content fileName="ranking.js" type="javascript" mode="static" position="head"/>
+      <content fileName="rankingOther.js" type="javascript" mode="static" position="head"/>
       <content fileName="standard.js" type="javascript" mode="dynamic" position="foot" />
       <content fileName="standard_numeric.js" type="javascript" mode="dynamic" position="none" />
 	  <content fileName="uparrow.png" type="image" mode="static" position="none" />
@@ -147,6 +147,97 @@
 		  <option value="20px" text="20"/>
 		  <option value="25px" text="25"/>
 		  <option value="30px" text="30"/>
+        </options>
+      </property>
+	</category>
+	<category id="other" name="Other Response">
+	  <property xsi:type="standardProperty" id="otherQID" name="Other Question ID" type="string" mode="static">
+        <description>
+          <![CDATA[The ids of the other responses seperated by commas]]>
+        </description>
+        <value></value>
+      </property>
+	  <property xsi:type="standardProperty" id="otherRID" name="Other Response ID" type="string" mode="static">
+        <description>
+          <![CDATA[The ids of the other responses separated by commas]]>
+        </description>
+        <value>5</value>
+      </property>
+	  <property xsi:type="standardProperty" id="otherColourPrimary" name="Other Colour Primary" type="color" mode="static">
+        <description>
+          <![CDATA[Primary colour of the other response]]>
+        </description>
+        <value>255,255,255</value>
+      </property>
+      <property xsi:type="standardProperty" id="otherColourSecondary" name="Other Colour Secondary" type="color" mode="static">
+        <description>
+          <![CDATA[Secondary colour of the other response]]>
+        </description>
+        <value>255,255,255</value>
+      </property>
+	  <property xsi:type="standardProperty" id="otherFontColour" name="Other Font Colour" type="color" mode="static">
+        <description>
+          <![CDATA[Font colour of the other response]]>
+        </description>
+        <value>68,68,68</value>
+      </property>
+      <property xsi:type="standardProperty" id="otherBorderColour" name="Other Border Colour" type="color" mode="static">
+        <description>
+          <![CDATA[Border colour of the other response]]>
+        </description>
+        <value>161,167,173</value>
+      </property>
+      <property xsi:type="standardProperty" id="otherBorderThickness" name="Other Border Thickness" type="string" mode="static">
+        <description>
+          <![CDATA[The thickness of the border around the other response]]>
+        </description>
+        <value>1px</value>
+        <options>
+          <option value="none" text="None"/>
+          <option value="1px" text="1px"/>
+          <option value="2px" text="2px"/>
+          <option value="3px" text="3px"/>
+          <option value="4px" text="4px"/>
+          <option value="5px" text="5px"/>
+        </options>
+      </property>
+	  <property xsi:type="standardProperty" id="otherBorderRadius" name="Other Border Radius" type="string" mode="static">
+        <description>
+          <![CDATA[The amount of curve on the other response corners]]>
+        </description>
+        <value>2px</value>
+        <options>
+          <option value="0px" text="0"/>
+		  <option value="2px" text="2"/>
+          <option value="5px" text="5"/>
+          <option value="10px" text="10"/>
+          <option value="15px" text="15"/>
+          <option value="20px" text="20"/>
+          <option value="25px" text="25"/>
+          <option value="30px" text="30"/>
+        </options>
+      </property>
+      <property xsi:type="standardProperty" id="otherBorderStyle" name="Other Border Style" type="string" mode="static">
+        <description>
+          <![CDATA[The style of the border around the other response]]>
+        </description>
+        <value>solid</value>
+        <options>
+          <option value="none" text="None"/>
+          <option value="solid" text="Solid"/>
+          <option value="dashed" text="Dashed"/>
+          <option value="dotted" text="Dotted"/>
+          <option value="double" text="Double"/>
+        </options>
+      </property>
+      <property xsi:type="standardProperty" id="otherShadow" name="Other Drop Shadow" type="string" mode="static">
+        <description>
+          <![CDATA[The visibility of a dropshadow under the other response]]>
+        </description>
+        <value>none</value>
+        <options>
+          <option value="#999 0px 2px 3px" text="On"/>
+          <option value="none" text="Off"/>
         </options>
       </property>
 	</category>
