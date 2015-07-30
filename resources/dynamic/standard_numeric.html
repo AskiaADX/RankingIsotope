@@ -5,22 +5,36 @@ Dim inputValue
 Dim caption
 Dim inputId
 Dim image
+Dim index
 
 Dim i
 Dim ar = CurrentQuestion.ParentLoop.AvailableResponses
+
+Dim k
+Dim otherIDs = CurrentADC.PropValue("otherRID")
+Dim	otherIDarray = otherIDs.Split(",")
+Dim otherID
 
 For i = 1 To ar.Count
     inputValue  = ar[i].InputValue()
     caption     = ar[i].Caption
     image		= ar.ResourceURL[i]
+    index		= ar[i].index
 %}
-<div class="istope-item statement" data-value="{%= inputValue %}" unselectable='on' onselectstart='return false;' onmousedown='return false;'>
+<div class="istope-item statement" data-value="{%= inputValue %}" data-index="{%= index %}" unselectable='on' onselectstart='return false;'>
 	{% IF image <> "" Then %}
 		<img src="{%= image %}" />
     {% EndIF %}
     <span class="rank_text"></span>
 	<span class="statement_text">{%:= caption %}</span>
 	<div style="clear:both"></div>
+	{% For k = 1 To otherIDarray.Count 
+		otherID = otherIDarray[k].ToNumber()
+		IF index = otherID Then %}
+			<div><textarea class="otherText" data-id="{%= k %}" unselectable='off' onselectstart='return true;'></textarea></div>
+			<div style="clear:both"></div>
+		{% EndIF %}
+	{% Next %}
 </div>
 {% Next %}
 <div style="clear:both"></div>
