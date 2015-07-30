@@ -8,9 +8,6 @@
 		(options.height = options.height || "auto");
 		(options.setMax = options.setMax || $(this).children('.statement').size());
 		
-		var otherQIDarray = options.otherQID.split(","),
-			otherRIDarray = options.otherRID.split(",");
-		
 		$(this).css({'max-width':options.maxWidth,'width':options.controlWidth});
 		$(this).parents('.controlContainer').css({'width':'100%','overflow':'hidden'});
 		
@@ -23,17 +20,6 @@
 		
 		var dkActivated = options.dkActivated;
 		var dkselected = false;
-		
-		// Other
-		$(this).parents('.controlContainer').find('.statement .otherText').width( $(this).find('.statement').innerWidth() - 30 ).hide();
-		//OLD if ( $( '#'+options.otherQID ).val() !== '' ) $(this).parents('.controlContainer').find('.otherText').val( $( '#'+options.otherQID ).val() );
-		//OLD $( '#'+options.otherQID ).hide();
-		var i;
-		for (i = 0; i < otherQIDarray.length; ++i) {
-			if ( $( '#'+otherQIDarray[i] ).val() !== '' ) 
-				$(this).parents('.controlContainer').find('.statement[data-index="'+otherRIDarray[i]+'"] .otherText').val( $( '#'+otherQIDarray[i] ).val() );
-			$( '#'+otherQIDarray[i] ).hide();
-		}
 		
 		// List of items collection of object {caption : 'The caption', element : jQueryObject}
 		var $container = $(this),
@@ -78,16 +64,6 @@
 
 							$target.addClass('ranked')                // Add ranked class
 								.find('.rank_text').html(''); // Add rank value
-								
-							$(this).parents('.controlContainer').find('.otherText').val('');
-							for (i = 0; i < otherQIDarray.length; ++i) {
-								$( '#'+otherQIDarray[i] ).val('');
-							}
-							$(this).parents('.controlContainer').find('.otherText').hide();
-							
-							/*var otherID = $.inArray( String(parseInt($(this).attr('data-index'))), otherRIDarray );
-							if ( $.inArray( String(parseInt($(this).attr('data-index'))), otherRIDarray ) != -1 ) 
-								$(this).find('.otherText').show().focus();*/
 						}
 					} else {
 						if (dkselected){ 
@@ -99,13 +75,8 @@
 
 							$target.addClass('ranked')                // Add ranked class
 								.find('.rank_text').html(rankCount); // Add rank value
-								
-							var otherID = $.inArray( String(parseInt($(this).attr('data-index'))), otherRIDarray );
-							if ( $.inArray( String(parseInt($(this).attr('data-index'))), otherRIDarray ) != -1 ) 
-								$(this).find('.otherText').show().focus();
 						}
 					}
-						
 				} else { // item is currently ranked
 
 					rankCount -= 1;
@@ -115,7 +86,7 @@
 						.find('.rank_text').html(''); // Remove rank value
 
 					// Rerank other items
-					$container.find('.statement').each(function() { 
+					$container.find('.statement').each(function() {
 						var $current = $(this),
 							currentItem  = items[$current.data('index')],
 							currentValue = parseInt(currentItem.element.val(), 10);
@@ -127,16 +98,6 @@
 						}
 
 					});
-					
-					if ( $.inArray( String(parseInt($(this).attr('data-index'))), otherRIDarray ) != -1 ) {
-						
-						//FIX
-						var otherID = $.inArray( String(parseInt($(this).attr('data-index'))), otherRIDarray );
-						$(this).find('.otherText').hide();
-						$(this).find('.otherText').val('');
-						$( '#'+otherQIDarray[otherID] ).val('');
-					}
-
 
 				}
 
@@ -252,19 +213,16 @@
 
 			// Value of the input
 			var value = parseInt(items[i].element.val(), 10);
-			
 			var isRanked = Boolean(!isNaN(value) && value); // Verify if the value is a number greather than 0
 			if ( isRanked ) rankCount++;
 
 			$container.children('.statement:eq(' + i + ')').data('index', i).addClass(isRanked?'ranked':'').find('.rank_text').html(value);
 			
-			if ( isRanked ) $container.children('.statement:eq(' + i + ')').find('.otherText').show();
-				
-			if(isRanked && (i+1) == items.length && Boolean(options.dkActivated) == true ){
-				
+			if(isRanked && (i+1) == items.length){
 				dkselected = true;
 
 				$container.children('.statement:eq(' + i + ')').find('.rank_text').html(''); // Add rank value
+
 			}
 			
 		};
@@ -278,8 +236,7 @@
 		} else if ( options.forceResponseSize === 'both' && options.forcedResponseWidth !== '' && options.forcedResponseHeight !== '' ) {
 			$('.statement').width( options.forcedResponseWidth ).height( options.forcedResponseHeight );
 		}
-		
-		//alert(dkselected);
+
 		if(!dkselected){
 			$container.isotope(istopeOptions);
 		}	
@@ -356,7 +313,6 @@
 		function rankdown(e) {
 		
 			e.stopPropagation();
-
 			
 			var $target = $(e.delegateTarget).parents('.statement'),
 				index	= $target.data('index'),
@@ -412,32 +368,6 @@
 				$container.find('.statement').hover(showMoveOptions, hideMoveOptions);
 			}
 		}
-		
-		function writeText() {
-			$( '#'+otherQIDarray[parseInt($(this).data('id'))-1] ).val( $(this).val() );
-		
-		}
-		
-		$( '.otherText' ).focus(function(srcc) {
-			if ($(this).val() == $(this)[0].title) {
-				$(this).removeClass("defaultTextActive");
-				$(this).val("");
-			}
-		});
-		
-		$( '.otherText' ).blur(function() {
-			if ($(this).val() == "") {
-				$(this).addClass("defaultTextActive");
-				$(this).val($(this)[0].title);
-			}
-		});
-		
-		$(this).parents('.controlContainer').find( '.otherText' ).blur();  
-				
-		
-		$(this).parents('.controlContainer').find( '.otherText' ).keyup(writeText).click(function(e) {
-			e.stopPropagation();
-		});
 		
 		if ( total_images > 0 ) {
 			$container.find('img').each(function() {
