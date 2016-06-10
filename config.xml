@@ -1,4 +1,3 @@
-<?xml version="1.0" encoding="utf-8"?>
 <control xmlns="http://www.askia.com/ADCSchema"
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://www.askia.com/ADCSchema http://www.askia.com/Downloads/dev/schemas/adc2.0/Config.xsd"
@@ -7,7 +6,7 @@
   <info>
     <name>adc2-rankingIsotope</name>
     <guid>918f40bc-c410-47bf-8cef-233d411c142f</guid>
-    <version>1.1.6</version>
+    <version>1.1.8</version>
     <date>2013-07-04</date>
     <description>
       <![CDATA[
@@ -17,12 +16,15 @@
 			   - updated jquery to v1.11.1
 		v1.1.5 - added dk option
 		v1.1.6 - fixed dk page reload
-		v1.1.6 - fixed exlusive
+		v1.1.6 - fixed exclusive
+		v1.1.7 - added animatedResponses param
+		v1.1.8 - Fixed bug when ranking all items last item unranked when back button used
       ]]>
     </description>
     <author>
       <![CDATA[
         Paul Ferreira <paulf@askia.com>
+        Jerome Duparc <jeromed@askia.com>
       ]]>
     </author>
     <company>Askia</company>
@@ -147,6 +149,16 @@
 		  <option value="20px" text="20"/>
 		  <option value="25px" text="25"/>
 		  <option value="30px" text="30"/>
+        </options>
+      </property>
+      <property xsi:type="standardProperty" id="animatedResponses" name="Animate responses" type="string" mode="static">
+        <description>
+          <![CDATA[Animate the responses]]>
+        </description>
+        <value>1</value>
+        <options>
+          <option value="1" text="Yes"/>
+          <option value="0" text="No"/>
         </options>
       </property>
 	</category>

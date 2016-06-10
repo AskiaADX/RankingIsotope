@@ -7,7 +7,7 @@
 		(options.width = options.width || "auto");
 		(options.height = options.height || "auto");
 		(options.setMax = options.setMax || $(this).children('.statement').size());
-		
+
 		$(this).css({'max-width':options.maxWidth,'width':options.controlWidth});
 		$(this).parents('.controlContainer').css({'width':'100%','overflow':'hidden'});
 		
@@ -19,6 +19,8 @@
 		}
 		
 		var dkActivated = options.dkActivated;
+		var animatedResponses = options.animatedResponses;
+		var layout = options.layout;
 		var dkselected = false;
 		
 		// List of items collection of object {caption : 'The caption', element : jQueryObject}
@@ -102,7 +104,7 @@
 				}
 
 				// Update position using isotope
-				if(!dkselected){
+				if((!dkselected && animatedResponses) || (!dkselected && layout === "fitRows")){
 					$container.isotope('updateSortData', $container.find('.statement'));
 					$container.isotope(istopeOptions);
 				}
@@ -161,8 +163,10 @@
 				}
 
 				// Update position using isotope
-				$container.isotope('updateSortData', $container.find('.statement'));
-				$container.isotope(istopeOptions);
+				if (animatedResponses || layout === "fitRows") {
+					$container.isotope('updateSortData', $container.find('.statement'));
+					$container.isotope(istopeOptions);
+				}
 			});
 			
 		}
@@ -217,8 +221,9 @@
 			if ( isRanked ) rankCount++;
 
 			$container.children('.statement:eq(' + i + ')').data('index', i).addClass(isRanked?'ranked':'').find('.rank_text').html(value);
-			
-			if(isRanked && (i+1) == items.length){
+						
+			if(isRanked && i == items.length){
+				console.log("foo");
 				dkselected = true;
 
 				$container.children('.statement:eq(' + i + ')').find('.rank_text').html(''); // Add rank value
@@ -237,7 +242,7 @@
 			$('.statement').width( options.forcedResponseWidth ).height( options.forcedResponseHeight );
 		}
 
-		if(!dkselected){
+		if((!dkselected && animatedResponses) || (!dkselected && layout === "fitRows")){
 			$container.isotope(istopeOptions);
 		}	
 		//$container.delegate('.statement', 'click', selectStatement);
@@ -306,8 +311,10 @@
 			}
 			
 			// Update position using isotope
-			$container.isotope('updateSortData', $container.find('.statement'));
-			$container.isotope(istopeOptions);
+			if (animatedResponses || layout === "fitRows") {
+				$container.isotope('updateSortData', $container.find('.statement'));
+				$container.isotope(istopeOptions);
+			}
 		}
 		
 		function rankdown(e) {
@@ -358,8 +365,10 @@
 			}
 			
 			// Update position using isotope
-			$container.isotope('updateSortData', $container.find('.statement'));
-			$container.isotope(istopeOptions);
+			if (animatedResponses || layout === "fitRows") {
+				$container.isotope('updateSortData', $container.find('.statement'));
+				$container.isotope(istopeOptions);
+			}
 		}
 		
 		// Assign hover function

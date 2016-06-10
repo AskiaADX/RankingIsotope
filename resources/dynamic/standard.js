@@ -17,6 +17,7 @@ $(window).load(function() {
 		controlAlign : '{%= CurrentADC.PropValue("controlAlign") %}',
 		setMax : parseInt('{%= CurrentADC.PropValue("maxRankedItems") %}'),
 		dkActivated : {%= (CurrentADC.PropValue("dkActivated") = "1") %},
+		animatedResponses : {%= (CurrentADC.PropValue("animatedResponses") = "1") %},
 		layout : '{%= CurrentADC.PropValue("responseLayout") %}',
 		items : [
 			{%:= CurrentADC.GetContent("dynamic/standard_numeric.js").ToText()%}
