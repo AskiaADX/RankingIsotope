@@ -6,7 +6,11 @@
   <info>
     <name>adc2-rankingIsotope</name>
     <guid>918f40bc-c410-47bf-8cef-233d411c142f</guid>
+<<<<<<< HEAD
     <version>1.1.8</version>
+=======
+    <version>1.1.7</version>
+>>>>>>> origin/master
     <date>2013-07-04</date>
     <description>
       <![CDATA[
@@ -18,7 +22,10 @@
 		v1.1.6 - fixed dk page reload
 		v1.1.6 - fixed exclusive
 		v1.1.7 - added animatedResponses param
+<<<<<<< HEAD
 		v1.1.8 - Fixed bug when ranking all items last item unranked when back button used
+=======
+>>>>>>> origin/master
       ]]>
     </description>
     <author>
