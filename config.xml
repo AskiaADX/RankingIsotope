@@ -6,11 +6,8 @@
   <info>
     <name>adc2-rankingIsotope</name>
     <guid>918f40bc-c410-47bf-8cef-233d411c142f</guid>
-<<<<<<< HEAD
     <version>1.1.8</version>
-=======
     <version>1.1.7</version>
->>>>>>> origin/master
     <date>2013-07-04</date>
     <description>
       <![CDATA[
@@ -22,10 +19,7 @@
 		v1.1.6 - fixed dk page reload
 		v1.1.6 - fixed exclusive
 		v1.1.7 - added animatedResponses param
-<<<<<<< HEAD
 		v1.1.8 - Fixed bug when ranking all items last item unranked when back button used
-=======
->>>>>>> origin/master
       ]]>
     </description>
     <author>
@@ -47,18 +41,14 @@
       <constraint on="controls" responseblock="true" />
     </constraints>
   </info>
-
   <outputs defaultOutput="fallback">
-
     <output id="standard">
       <description><![CDATA[Output when the browser support Javascript]]></description>
       <condition><![CDATA[Browser.Support("javascript")]]></condition>
       <content fileName="ranking.css" type="css" mode="static" position="head" />
       <content fileName="standard.css" type="css" mode="dynamic" position="head" />
-      
       <content fileName="standard.html" type="html" mode="dynamic" position="placeholder" />
       <content fileName="standard_numeric.html" type="html" mode="dynamic" position="none" />
-
       <content fileName="es5-shim.min.js" type="javascript" mode="share" position="foot">
         <yield>
           <![CDATA[
@@ -78,7 +68,6 @@
 	  <content fileName="uparrow.png" type="image" mode="static" position="none" />
 	  <content fileName="downarrow.png" type="image" mode="static" position="none" />
     </output>
-    
     <output id="fallback">
       <description><![CDATA[Fallback when the browser doesn&acute;t support Javascript]]></description>
       <condition><![CDATA[Not(Browser.Support("javascript"))]]></condition>
@@ -87,7 +76,6 @@
       <content fileName="fallback_numeric.html" type="html" mode="dynamic" position="none" />
     </output>
   </outputs>
-
   <properties>
     <category id="general" name="General">
 	  <property xsi:type="standardProperty" id="fontSize" name="Font Size" type="string" mode="static">
@@ -169,7 +157,6 @@
         </options>
       </property>
 	</category>
-	
 	<category id="alignment" name="Alignment">
 	  <property xsi:type="standardProperty" id="responseTextAlign" name="Response Text Alignment" type="string" mode="static">
         <description>
@@ -708,6 +695,5 @@
         </options>
       </property>
 	</category>
-
   </properties>
 </control>
