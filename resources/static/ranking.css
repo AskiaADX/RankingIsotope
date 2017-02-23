@@ -1,4 +1,4 @@
-﻿/* Isotope */
+/* Isotope */
 .isotope,
 .isotope .isotope-item {
   /* change duration value to whatever you like */
@@ -48,23 +48,6 @@
 	cursor:pointer;
 	/*behavior:url(PIE.htc);*/
 	
-	/* Decoration */
-	border: 1px solid #000;
-	background: #fff; 
-	/*background: -webkit-gradient(linear, 0 0, 0 100%, from( #fff ) to( #cecece )); 
-	background: -webkit-linear-gradient( #fff , #cecece ); 
-	background: -moz-linear-gradient( 	 #fff , #cecece ); 
-	background: -ms-linear-gradient( 	 #fff , #cecece ); 
-	background: -o-linear-gradient( 	 #fff , #cecece ); 
-	background: linear-gradient( 		 #fff , #cecece ); 	
-	-pie-background: linear-gradient(	 #fff , #cecece ); */
-	
-	/* Effects */
-	-webkit-border-radius:	5px 5px 5px 5px; 
-	-moz-border-radius:		5px 5px 5px 5px; 
-	-khtml-border-radius:	5px 5px 5px 5px; 
-	border-radius:			5px 5px 5px 5px; 
-	
 	-webkit-transform: translate3d(0, 0, 0);
 	-webkit-backface-visibility: hidden;
 	-webkit-perspective: 1000;
@@ -82,8 +65,6 @@
 { 
 	display:block;
 	padding:10px;
-	font-size:1.0em;
-	color:#000;
 }
 .adc-ranking-isotope .statement img {
 	display:inline-block; 
@@ -110,8 +91,6 @@
 	top:0px; right:0px;
 	
     /* Typo */
-    color:#fff;
-    font-size:1.0em;
     font-weight:bold;
 }
 

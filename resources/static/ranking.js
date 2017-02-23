@@ -1,4 +1,4 @@
-﻿(function ($) {
+(function ($) {
 	"use strict";
 
 	$.fn.adcRanking = function adcRanking(options) {
@@ -108,6 +108,10 @@
 					$container.isotope('updateSortData', $container.find('.statement'));
 					$container.isotope(istopeOptions);
 				}
+                
+                if (window.askia) {
+                    askia.triggerAnswer();
+                }
 				
 			}
 			
@@ -307,7 +311,7 @@
 					$target.find('.rank_text').html(value); // Add rank value
 				
 				}
-
+                
 			}
 			
 			// Update position using isotope
@@ -315,6 +319,9 @@
 				$container.isotope('updateSortData', $container.find('.statement'));
 				$container.isotope(istopeOptions);
 			}
+            if (window.askia) {
+                askia.triggerAnswer();
+            }
 		}
 		
 		function rankdown(e) {
@@ -369,6 +376,9 @@
 				$container.isotope('updateSortData', $container.find('.statement'));
 				$container.isotope(istopeOptions);
 			}
+            if (window.askia) {
+                askia.triggerAnswer();
+            }
 		}
 		
 		// Assign hover function
