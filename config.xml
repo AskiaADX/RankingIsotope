@@ -101,7 +101,7 @@
       </property>
       <property xsi:type="standardProperty" id="showRankMoveControls" name="Show Rank Move Controls" type="boolean" mode="static" require="false" visible="true">
         <description><![CDATA[Show hover controls to allow moving of ranked items]]></description>
-        <value><![CDATA[1]]></value>
+        <value><![CDATA[0]]></value>
       </property>
       <property xsi:type="standardProperty" id="rankMoveArrowColour" name="Rank Move Arrow Colour" type="string" mode="static" require="false" visible="true">
         <description><![CDATA[Set colour of arrow on buttons]]></description>
