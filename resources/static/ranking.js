@@ -7,6 +7,7 @@
 		(options.width = options.width || "auto");
 		(options.height = options.height || "auto");
 		(options.setMax = options.setMax || $(this).children('.statement').size());
+        (options.currentQuestion = options.currentQuestion || '');
 
 		$(this).css({'max-width':options.maxWidth,'width':options.controlWidth});
 		$(this).parents('.controlContainer').css({'width':'100%','overflow':'hidden'});
@@ -109,7 +110,10 @@
 					$container.isotope(istopeOptions);
 				}
                 
-                if (window.askia) {
+                if (window.askia 
+                    && window.arrLiveRoutingShortcut 
+                    && window.arrLiveRoutingShortcut.length > 0
+                    && window.arrLiveRoutingShortcut.indexOf(options.currentQuestion) >= 0) {
                     askia.triggerAnswer();
                 }
 				
@@ -319,7 +323,10 @@
 				$container.isotope('updateSortData', $container.find('.statement'));
 				$container.isotope(istopeOptions);
 			}
-            if (window.askia) {
+            if (window.askia 
+                && window.arrLiveRoutingShortcut 
+                && window.arrLiveRoutingShortcut.length > 0
+                && window.arrLiveRoutingShortcut.indexOf(options.currentQuestion) >= 0) {
                 askia.triggerAnswer();
             }
 		}
@@ -376,7 +383,10 @@
 				$container.isotope('updateSortData', $container.find('.statement'));
 				$container.isotope(istopeOptions);
 			}
-            if (window.askia) {
+            if (window.askia 
+                && window.arrLiveRoutingShortcut 
+                && window.arrLiveRoutingShortcut.length > 0
+                && window.arrLiveRoutingShortcut.indexOf(options.currentQuestion) >= 0) {
                 askia.triggerAnswer();
             }
 		}
