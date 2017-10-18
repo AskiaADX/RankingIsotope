@@ -1,5 +1,5 @@
-<div class="controlContainer" style="visibility: hidden;">
-	<div id="adc_{%= CurrentADC.InstanceId %}" class="adc-ranking-isotope">
+<div class="controlContainer">
+	<div id="adc_{%= CurrentADC.InstanceId %}" class="adc-ranking-isotope" style="visibility:hidden;">
         {%:= CurrentADC.GetContent("dynamic/standard_numeric.html").ToText()%}
         <div style="clear:both;"></div>
     </div>

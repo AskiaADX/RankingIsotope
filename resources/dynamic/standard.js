@@ -1,6 +1,7 @@
 /* standard_default.js */
 $(window).load(function() {
 	$('#adc_{%= CurrentADC.InstanceId %}').adcRanking({
+        instanceId : '{%= CurrentADC.InstanceId%}',
 		maxWidth : '{%= CurrentADC.PropValue("maxWidth") %}',
 		controlWidth : '{%= CurrentADC.PropValue("controlWidth") %}',
 		forcedImageWidth : {%= CurrentADC.PropValue("forcedImageW") %},

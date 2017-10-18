@@ -4,6 +4,7 @@
 	$.fn.adcRanking = function adcRanking(options) {
 
 		// MS: Syntax to set the default value or use the one specified
+        (options.instanceId = options.instanceId || 1);
 		(options.width = options.width || "auto");
 		(options.height = options.height || "auto");
 		(options.setMax = options.setMax || $(this).children('.statement').size());
@@ -406,14 +407,16 @@
 					if (images_loaded >= total_images) {
 						
 						// now all images are loaded.
-						$container.css('visibility','visible');
+						// $container.css('visibility','visible');
 	
 					}
 				}).attr("src", fakeSrc);
 			});
 		} else {
-			$container.css('visibility','visible');
+			// $container.css('visibility','visible');
 		}
+        
+        setTimeout(function(){ document.querySelector("#adc_" + options.instanceId).style.visibility = 'visible'; }, 300);
 		
 		return this;
 	}
