@@ -230,8 +230,8 @@
 
 			$container.children('.statement:eq(' + i + ')').data('index', i).addClass(isRanked?'ranked':'').find('.rank_text').html(value);
 						
-			if(isRanked && i == items.length){
-				console.log("foo");
+			if (isRanked && (i+1) === items.length && Boolean(options.dkActivated) === true ){
+
 				dkselected = true;
 
 				$container.children('.statement:eq(' + i + ')').find('.rank_text').html(''); // Add rank value
