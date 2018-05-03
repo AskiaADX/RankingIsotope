@@ -1,3 +1,7 @@
-﻿<div id="adc_{%= CurrentQuestion.Id %}" class="adc-ranking-isotope">
+<div id="adc_{%= CurrentQuestion.Id %}" class="adc-ranking-isotope">
+    {% If (CurrentQuestion.Type = "numeric" ) Then %}
 	{%:= CurrentADC.GetContent("dynamic/fallback_numeric.html").ToText()%}
+    {% Else %}
+    {%:= CurrentADC.GetContent("dynamic/fallback_multiple.html").ToText()%}
+    {% EndIf %}
 </div>

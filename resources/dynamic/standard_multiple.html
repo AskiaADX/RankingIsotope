@@ -1,0 +1,35 @@
+<!-- standard_multiple.html -->
+{%
+Dim inputName = CurrentQuestion.InputName("ranking")
+Dim inputValue
+Dim caption
+Dim inputId
+Dim image
+
+Dim i
+Dim ar = CurrentQuestion.AvailableResponses
+
+For i = 1 To ar.Count
+    inputValue  = ar[i].InputValue()
+    caption     = ar[i].Caption
+    image		= ar.ResourceURL[i]
+%}
+<div class="istope-item statement" data-value="{%= inputValue %}" unselectable='on' onselectstart='return false;' onmousedown='return false;'>
+	{% IF image <> "" Then %}
+		<img src="{%= image %}" />
+    {% EndIF %}
+    <span class="rank_text"></span>
+	<span class="statement_text">{%:= caption %}</span>
+	<div style="clear:both"></div>
+</div>
+{% Next %}
+<div style="clear:both"></div>
+{%
+ar = CurrentQuestion.AvailableResponses
+
+For i = 1 To ar.Count 
+    inputName = ar[i].InputName("ranking")
+    inputId = inputName.replace(" ", "_")
+%}
+<input type="hidden" name="{%= inputName%}" id="{%= inputId%}" value="{%= on(ar[i].Rank > 0,ar[i].Rank.ToString(),"") %}" />
+{% Next %}

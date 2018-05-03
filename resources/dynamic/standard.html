@@ -1,6 +1,10 @@
 <div class="controlContainer">
 	<div id="adc_{%= CurrentADC.InstanceId %}" class="adc-ranking-isotope" style="visibility:hidden;">
+        {% If (CurrentQuestion.Type = "numeric" ) Then %}
         {%:= CurrentADC.GetContent("dynamic/standard_numeric.html").ToText()%}
+        {% Else %}
+        {%:= CurrentADC.GetContent("dynamic/standard_multiple.html").ToText()%}
+        {% EndIf %}
         <div style="clear:both;"></div>
     </div>
 </div>

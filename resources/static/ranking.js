@@ -9,6 +9,7 @@
 		(options.height = options.height || "auto");
 		(options.setMax = options.setMax || $(this).children('.statement').size());
         (options.currentQuestion = options.currentQuestion || '');
+        (options.type = options.type || 'numeric');
 
 		$(this).css({'max-width':options.maxWidth,'width':options.controlWidth});
 		$(this).parents('.controlContainer').css({'width':'100%','overflow':'hidden'});
