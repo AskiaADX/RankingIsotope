@@ -59,7 +59,7 @@
 					value	= parseInt($input.val(), 10);
 
 				if (!value) { // item is currently UNranked
-					if((index+1) == items.length && dkActivated){
+					if (((index+1) == items.length && (dkActivated == 1 || dkActivated == 2)) || ((index+1) == (items.length - 1) && dkActivated == 2)) {
 						deselectAllStatements();
 						dkselected = true;
 						
@@ -232,7 +232,7 @@
 
 			$container.children('.statement:eq(' + i + ')').data('index', i).addClass(isRanked?'ranked':'').find('.rank_text').html(value);
 						
-			if (isRanked && (i+1) === items.length && Boolean(options.dkActivated) === true ){
+			if ((isRanked && (i+1) === items.length && (options.dkActivated == 1 || options.dkActivated == 2) ) || (isRanked && (i+1) === (items.length - 1) && (options.dkActivated == 2) )) {
 
 				dkselected = true;
 

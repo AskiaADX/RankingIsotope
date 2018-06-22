@@ -17,7 +17,7 @@ $(window).load(function() {
 		showRankMoveControls: {%= (CurrentADC.PropValue("showRankMoveControls") = "1") %},
 		controlAlign : '{%= CurrentADC.PropValue("controlAlign") %}',
 		setMax : parseInt('{%= CurrentADC.PropValue("maxRankedItems") %}'),
-		dkActivated : {%= On( (CurrentQuestion.Type = "multiple" and CurrentQuestion.AvailableResponses[CurrentQuestion.AvailableResponses.Count].IsExclusive)  or (CurrentADC.PropValue("dkActivated") = "1"),1,0) %},
+		dkActivated : {%= On((CurrentQuestion.Type = "multiple" and CurrentQuestion.AvailableResponses[CurrentQuestion.AvailableResponses.Count].IsExclusive and CurrentQuestion.AvailableResponses[CurrentQuestion.AvailableResponses.Count - 1].IsExclusive)  or (CurrentADC.PropValue("dkActivated") = "2"),2,On((CurrentQuestion.Type = "multiple" and CurrentQuestion.AvailableResponses[CurrentQuestion.AvailableResponses.Count].IsExclusive)  or (CurrentADC.PropValue("dkActivated") = "1"),1,0)) %},
 		animatedResponses : {%= (CurrentADC.PropValue("animatedResponses") = "1") %},
 		layout : '{%= CurrentADC.PropValue("responseLayout") %}',
       	currentQuestion: '{%:= CurrentQuestion.Shortcut %}',
