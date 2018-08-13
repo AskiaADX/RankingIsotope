@@ -23,7 +23,8 @@
 		v2.0.3 - Fixed visibility of the control
 		v2.0.4 - Fixed hover styling for small screen
 		v2.0.5 - Added compatibility with multiple
-        v2.0.6 - Added management of 2 exclusives responses]]></description>
+        v2.0.6 - Added management of 2 exclusives responses
+		v2.0.7 - Added alt attribute to img]]></description>
     <company>Askia</company>
     <author><![CDATA[Paul Ferreira <paulf@askia.com>        Jerome Duparc <jeromed@askia.com>]]></author>
     <site>http://www.askia.com</site>
