@@ -3,7 +3,7 @@
 
 	$.fn.adcRanking = function adcRanking(options) {
 
-		// MS: Syntax to set the default value or use the one specified
+		// 2 MS: Syntax to set the default value or use the one specified
         (options.instanceId = options.instanceId || 1);
 		(options.width = options.width || "auto");
 		(options.height = options.height || "auto");
