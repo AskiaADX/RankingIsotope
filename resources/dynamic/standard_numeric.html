@@ -7,7 +7,7 @@ Dim inputId
 Dim image
 
 Dim i
-Dim ar = CurrentQuestion.ParentLoop.Answers
+Dim ar = CurrentQuestion.ParentLoop.AvailableAnswers
 
 For i = 1 To ar.Count
     inputValue  = ar[i].InputValue()
@@ -26,7 +26,7 @@ For i = 1 To ar.Count
 {% Next %}
 <div style="clear:both"></div>
 {%
-ar = CurrentQuestion.ParentLoop.Answers
+ar = CurrentQuestion.ParentLoop.AvailableAnswers
 
 For i = 1 To ar.Count 
     inputName = CurrentQuestion.iteration(ar[i].Index).InputName()
