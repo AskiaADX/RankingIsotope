@@ -36,13 +36,13 @@
       <category>Ranking</category>
     </categories>
     <constraints>
-      <constraint on="questions" multiple="true" numeric="true" chapter="false" date="false" open="false" requireParentLoop="false" single="false" RequireLoopDepth="0" />
+      <constraint on="questions" multiple="true" numeric="true" chapter="false" date="false" open="false" requireParentLoop="false" single="false" requireLoopDepth="0" />
       <constraint on="controls" responseblock="true" checkbox="false" label="false" listbox="false" radiobutton="false" textbox="false" />
       <constraint on="responses" max="*" min="*" />
     </constraints>
   </info>
   <outputs defaultOutput="fallback">
-    <output id="standard" ManageLoopDepth="1">
+    <output id="standard" manageLoopDepth="1">
       <description><![CDATA[Output when the browser support Javascript]]></description>
       <condition><![CDATA[Browser.Support("javascript")]]></condition>
       <content fileName="ranking.css" type="css" mode="static" position="head" />
@@ -70,7 +70,7 @@
       <content fileName="uparrow.png" type="image" mode="static" position="none" />
       <content fileName="downarrow.png" type="image" mode="static" position="none" />
     </output>
-    <output id="fallback" ManageLoopDepth="1">
+    <output id="fallback" manageLoopDepth="1">
       <description><![CDATA[Fallback when the browser doesn&acute;t support Javascript]]></description>
       <condition><![CDATA[Not(Browser.Support("javascript"))]]></condition>
       <content fileName="fallback.css" type="css" mode="static" position="head" />
