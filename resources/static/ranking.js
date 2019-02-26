@@ -13,19 +13,19 @@
 
 		$(this).css({'max-width':options.maxWidth,'width':options.controlWidth});
 		$(this).parents('.controlContainer').css({'width':'100%','overflow':'hidden'});
-		
+
 		if ( options.controlAlign === "center" ) {
 			$(this).parents('.controlContainer').css({'text-align':'center'});
 			$(this).css({'margin':'0px auto'});
 		} else if ( options.controlAlign === "right" ) {
 			$(this).css({'margin':'0 0 0 auto'});
 		}
-		
+
 		var dkActivated = options.dkActivated;
 		var animatedResponses = options.animatedResponses;
 		var layout = options.layout;
 		var dkselected = false;
-		
+
 		// List of items collection of object {caption : 'The caption', element : jQueryObject}
 		var $container = $(this),
 			items = options.items,
@@ -49,29 +49,39 @@
 		// Select a statement
 		// @this = target node
 		function selectStatement(e) {
-			
+
 			//console.log ( (!$(e.target).hasClass('upRank') && !$(e.target).hasClass('downRank')) + ":" + !$(e.target).hasClass('upRank') +":"+ !$(e.target).hasClass('downRank'));
 			if ( !$(e.target).hasClass('upRank') && !$(e.target).hasClass('downRank') ) {
-			
+
 				var $target = $(this),
 					index	= $target.data('index'),
 					$input = items[index].element,
 					value	= parseInt($input.val(), 10);
 
 				if (!value) { // item is currently UNranked
-					if (((index+1) == items.length && (dkActivated == 1 || dkActivated == 2)) || ((index+1) == (items.length - 1) && dkActivated == 2)) {
+				if (((index+1) == items.length && (dkActivated == 1 || dkActivated == 2)) || ((index+1) == (items.length - 1) && dkActivated == 2) || (index == 0 && dkActivated == 3)) {
 						deselectAllStatements();
 						dkselected = true;
-						
-						if ((rankCount + 1) <= options.setMax) {
-							rankCount += 1;
-							$input.val(rankCount);
 
-							$target.addClass('ranked')                // Add ranked class
-								.find('.rank_text').html(''); // Add rank value
+						if (dkActivated == 3) {
+							if ((rankCount + 1) <= options.setMax) {
+								rankCount += 1;
+								$input.val(rankCount);
+
+								$target.addClass('ranked') // Add ranked class
+									.find('.rank_text').html(''); // Add rank value
+							}
+						} else {
+							if ((rankCount + 1) <= options.setMax) {
+								rankCount += 1;
+								$input.val(rankCount);
+
+								$target.addClass('ranked') // Add ranked class
+									.find('.rank_text').html(''); // Add rank value
+							}
 						}
 					} else {
-						if (dkselected){ 
+						if (dkselected){
 							deselectAllStatements();
 						}
 						if ((rankCount + 1) <= options.setMax) {
@@ -111,28 +121,28 @@
 					$container.isotope('updateSortData', $container.find('.statement'));
 					$container.isotope(istopeOptions);
 				}
-                
-                if (window.askia 
-                    && window.arrLiveRoutingShortcut 
+
+                if (window.askia
+                    && window.arrLiveRoutingShortcut
                     && window.arrLiveRoutingShortcut.length > 0
                     && window.arrLiveRoutingShortcut.indexOf(options.currentQuestion) >= 0) {
                     askia.triggerAnswer();
                 }
-				
+
 			}
-			
+
 			/*if ( showRankMoveControls && (navigator.userAgent.match(/iPhone/i)) || (navigator.userAgent.match(/iPod/i)) || (navigator.userAgent.match(/iPad/i)) ) {
 				//showMoveOptions();
 			}*/
 		}
-		
+
 		// Select a statement
 		// @this = target node
 		function deselectAllStatements() {
 			dkselected = false;
 			//$container.on('click', '.statement', selectStatement);
 			$container.find( '.statement' ).each(function(i, obj) {
-			
+
 				var $target = $(obj),
 					index	= $target.data('index'),
 					$input = items[index].element,
@@ -178,9 +188,9 @@
 					$container.isotope(istopeOptions);
 				}
 			});
-			
+
 		}
-		
+
 		// Check for missing images and resize
 		$container.find('.statement img').each(function forEachImage() {
 			//if ( $(this).attr('src') == '' ) /*$(this).remove();*/alert("foo");
@@ -188,7 +198,7 @@
 				width: $(this).width(),
 				height: $(this).height()
 			};
-			
+
 			if (options.forceImageSize === "height" ) {
 				if ( size.height > options.forcedImageHeight ) {
 					var ratio = (options.forcedImageHeight / size.height);
@@ -201,28 +211,28 @@
 					size.width  *= ratio,
 					size.height *= ratio;
 				}// else applyPaddingTo = "width";
-				
+
 			} else if (options.forceImageSize === "both" ) {
 				if (options.forcedImageHeight > 0 && size.height > options.forcedImageHeight) {
 					var ratio = (options.forcedImageHeight / size.height);
 					size.height *= ratio,
 					size.width  *= ratio;
 				}
-	
+
 				if (options.forcedImageWidth > 0 && size.width > options.forcedImageWidth) {
 					var ratio = (options.forcedImageWidth / size.width);
 					size.width  *= ratio,
 					size.height *= ratio;
 				}
-				
 
-			} 
+
+			}
 			$(this).css(size).css('margin-right', $container.find('.rank_text').outerWidth(true) + 'px');
 		});
-		
+
 		// add ns to last x items
 		if ( options.numberNS > 0 ) $('.statement').slice(-options.numberNS).addClass('ns');
-		
+
 		for ( var i=0; i<items.length; i++ ) {
 
 			// Value of the input
@@ -231,7 +241,7 @@
 			if ( isRanked ) rankCount++;
 
 			$container.children('.statement:eq(' + i + ')').data('index', i).addClass(isRanked?'ranked':'').find('.rank_text').html(value);
-						
+
 			if ((isRanked && (i+1) === items.length && (options.dkActivated == 1 || options.dkActivated == 2) ) || (isRanked && (i+1) === (items.length - 1) && (options.dkActivated == 2) )) {
 
 				dkselected = true;
@@ -239,9 +249,9 @@
 				$container.children('.statement:eq(' + i + ')').find('.rank_text').html(''); // Add rank value
 
 			}
-			
+
 		};
-		
+
 		if ( options.forceResponseSize === 'no' ) {
 			$('.statement').width($('.statement').width());
 		} else if ( options.forceResponseSize === 'width' && options.forcedResponseWidth !== '' ) {
@@ -254,11 +264,11 @@
 
 		if((!dkselected && animatedResponses) || (!dkselected && layout === "fitRows")){
 			$container.isotope(istopeOptions);
-		}	
+		}
 		//$container.delegate('.statement', 'click', selectStatement);
 			$container.on('click', '.statement', selectStatement);
-		
-		
+
+
 		function showMoveOptions(e) {
 			$(e.delegateTarget).append('<div class="rerankContainer"><div class="upRank"></div><div class="downRank"></div></div>');
 			var marginAdjustmentTB = Math.floor( ($('.rerankContainer').outerHeight() - 17 )/2 ),
@@ -267,24 +277,24 @@
 			$('.upRank').click(rankup);
 			$('.downRank').click(rankdown);
 			// hide ranking options after 2 seconds
-			setTimeout( hideMoveOptions, 2000); 
+			setTimeout( hideMoveOptions, 2000);
 		}
-		
+
 		function hideMoveOptions(e) {
 			$( ".rerankContainer" ).remove();
 		}
-		
+
 		function rankup(e) {
-		
+
 			e.stopPropagation();
-		
+
 			var $target = $(e.delegateTarget).parents('.statement'),
 				index	= $target.data('index'),
 				$input = items[index].element,
 				value	= parseInt($input.val(), 10);
 
 			if (!value) { // item is currently UNranked
-							
+
 				if ((rankCount + 1) <= options.setMax) {
 					rankCount += 1;
 					$input.val(rankCount);
@@ -293,9 +303,9 @@
 						.find('.rank_text').html(rankCount); // Add rank value
 				}
 			} else { // item is currently ranked
-				
+
 				if ( value > 1 ) {
-					
+
 					value  -= 1;
 
 					// Rerank other items
@@ -303,47 +313,47 @@
 						var $current = $(this),
 							currentItem  = items[$current.data('index')],
 							currentValue = parseInt(currentItem.element.val(), 10);
-	
+
 						if ($current !== $target && currentValue && currentValue == value) {
 							// Re-number item
 							currentItem.element.val(currentValue + 1);
 							$current.find('.rank_text').html(currentValue + 1);
 						}
-	
+
 					});
-					
+
 					// Move item up a rank
 					$input.val(value);
 					$target.find('.rank_text').html(value); // Add rank value
-				
+
 				}
-                
+
 			}
-			
+
 			// Update position using isotope
 			if (animatedResponses || layout === "fitRows") {
 				$container.isotope('updateSortData', $container.find('.statement'));
 				$container.isotope(istopeOptions);
 			}
-            if (window.askia 
-                && window.arrLiveRoutingShortcut 
+            if (window.askia
+                && window.arrLiveRoutingShortcut
                 && window.arrLiveRoutingShortcut.length > 0
                 && window.arrLiveRoutingShortcut.indexOf(options.currentQuestion) >= 0) {
                 askia.triggerAnswer();
             }
 		}
-		
+
 		function rankdown(e) {
-		
+
 			e.stopPropagation();
-			
+
 			var $target = $(e.delegateTarget).parents('.statement'),
 				index	= $target.data('index'),
 				$input = items[index].element,
 				value	= parseInt($input.val(), 10);
 
 			if (!value) { // item is currently UNranked
-							
+
 				if ((rankCount + 1) <= options.setMax) {
 					rankCount += 1;
 					$input.val(rankCount);
@@ -351,11 +361,11 @@
 					$target.addClass('ranked')                // Add ranked class
 						.find('.rank_text').html(rankCount); // Add rank value
 				}
-				
+
 			} else { // item is currently ranked
-				
+
 				if ( value < items.length && value < $('.ranked').length ) {
-				
+
 					value  += 1;
 
 					// Rerank other items
@@ -371,54 +381,54 @@
 						}
 
 					});
-					
+
 					// Move item up a rank
 					$input.val(value);
 					$target.find('.rank_text').html(value); // Add rank value
-					
+
 				}
 
 			}
-			
+
 			// Update position using isotope
 			if (animatedResponses || layout === "fitRows") {
 				$container.isotope('updateSortData', $container.find('.statement'));
 				$container.isotope(istopeOptions);
 			}
-            if (window.askia 
-                && window.arrLiveRoutingShortcut 
+            if (window.askia
+                && window.arrLiveRoutingShortcut
                 && window.arrLiveRoutingShortcut.length > 0
                 && window.arrLiveRoutingShortcut.indexOf(options.currentQuestion) >= 0) {
                 askia.triggerAnswer();
             }
 		}
-		
+
 		// Assign hover function
 		if ( showRankMoveControls ) {
 			if ( !((navigator.userAgent.match(/iPhone/i)) || (navigator.userAgent.match(/iPod/i)) || (navigator.userAgent.match(/iPad/i))) ) {
 				$container.find('.statement').hover(showMoveOptions, hideMoveOptions);
 			}
 		}
-		
+
 		if ( total_images > 0 ) {
 			$container.find('img').each(function() {
 				var fakeSrc = $(this).attr('src');
 				$("<img/>").css('display', 'none').load(function() {
 					images_loaded++;
 					if (images_loaded >= total_images) {
-						
+
 						// now all images are loaded.
 						// $container.css('visibility','visible');
-	
+
 					}
 				}).attr("src", fakeSrc);
 			});
 		} else {
 			// $container.css('visibility','visible');
 		}
-        
+
         setTimeout(function(){ document.querySelector("#adc_" + options.instanceId).style.visibility = 'visible'; }, 300);
-		
+
 		return this;
 	}
 
