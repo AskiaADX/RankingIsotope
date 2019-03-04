@@ -230,11 +230,17 @@
 			$(this).css(size).css('margin-right', $container.find('.rank_text').outerWidth(true) + 'px');
 		});
 
-		// add ns to last x items
-		if ( options.numberNS > 0 ) $('.statement').slice(-options.numberNS).addClass('ns');
+		if ( options.numberNS > 0 ){
+			if (dkActivated == 3) { // add ns to the first item
+				$('.statement').slice(0,1).addClass('ns');
+
+			} else { // add ns to last x items
+				$('.statement').slice(-options.numberNS).addClass('ns');
+			}
+		}
+
 
 		for ( var i=0; i<items.length; i++ ) {
-
 			// Value of the input
 			var value = parseInt(items[i].element.val(), 10);
 			var isRanked = Boolean(!isNaN(value) && value); // Verify if the value is a number greather than 0

@@ -24,13 +24,13 @@ $(window).load(function() {
 												2
 											{% ElseIf (CurrentQuestion.AvailableResponses[CurrentQuestion.AvailableResponses.Count].IsExclusive) Then %}
 												1
-											{% ElseIf (CurrentQuestion.AvailableResponses[CurrentQuestion.AvailableResponses.Count].IsExclusive) Then %}
-
 											{% Else %}
 												0
 											{% EndIf %}
 										{% Else %}
-											{% If (CurrentADC.PropValue("dkActivated") = "2") Then %}
+											{% If (CurrentADC.PropValue("dkActivated") = "3") Then %}
+												3
+											{% ElseIf (CurrentADC.PropValue("dkActivated") = "2") Then %}
 												2
 											{% ElseIf (CurrentADC.PropValue("dkActivated") = "1") Then %}
 												1
