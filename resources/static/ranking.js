@@ -59,10 +59,10 @@
 					value	= parseInt($input.val(), 10);
 
 				if (!value) { // item is currently UNranked
-
-					if (((index+1) == items.length && (dkActivated == 1 || dkActivated == 2)) || ((index+1) == (items.length - 1) && dkActivated == 2) || (index == 0 && dkActivated == 3)) {
+				if (((index+1) == items.length && (dkActivated == 1 || dkActivated == 2)) || ((index+1) == (items.length - 1) && dkActivated == 2) || (index == 0 && dkActivated == 3)) {
 						deselectAllStatements();
 						dkselected = true;
+
 						if (dkActivated == 3) {
 							if ((rankCount + 1) <= options.setMax) {
 								rankCount += 1;
@@ -93,11 +93,7 @@
 						}
 					}
 				} else { // item is currently ranked
-					// if (dkActivated == 3 && rankCount == 1) {
-					//
-					// } else {
-					//
-					// }
+
 					rankCount -= 1;
 					$input.val("");
 
@@ -106,7 +102,6 @@
 
 					// Rerank other items
 					$container.find('.statement').each(function() {
-
 						var $current = $(this),
 							currentItem  = items[$current.data('index')],
 							currentValue = parseInt(currentItem.element.val(), 10);
@@ -115,7 +110,6 @@
 							// Re-number item
 							currentItem.element.val(currentValue - 1);
 							$current.find('.rank_text').html(currentValue - 1);
-
 						}
 
 					});
@@ -236,11 +230,17 @@
 			$(this).css(size).css('margin-right', $container.find('.rank_text').outerWidth(true) + 'px');
 		});
 
-		// add ns to last x items
-		if ( options.numberNS > 0 ) $('.statement').slice(-options.numberNS).addClass('ns');
+		if ( options.numberNS > 0 ){
+			if (dkActivated == 3) { // add ns to the first item
+				$('.statement').slice(0,1).addClass('ns');
+
+			} else { // add ns to last x items
+				$('.statement').slice(-options.numberNS).addClass('ns');
+			}
+		}
+
 
 		for ( var i=0; i<items.length; i++ ) {
-
 			// Value of the input
 			var value = parseInt(items[i].element.val(), 10);
 			var isRanked = Boolean(!isNaN(value) && value); // Verify if the value is a number greather than 0
@@ -350,6 +350,7 @@
 		}
 
 		function rankdown(e) {
+
 			e.stopPropagation();
 
 			var $target = $(e.delegateTarget).parents('.statement'),
