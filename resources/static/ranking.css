@@ -39,48 +39,46 @@
 
 
 /* Statements */
-.adc-ranking-isotope .statement
-{
+.adc-ranking-isotope .statement 
+{   
     /* Element */
 	display:block;
 	margin:0 0 5px 0;
     vertical-align:middle;
 	cursor:pointer;
-	/*behavior:url(PIE.htc);*/
-
+	
 	-webkit-transform: translate3d(0, 0, 0);
 	-webkit-backface-visibility: hidden;
 	-webkit-perspective: 1000;
-
+	
 	/* disable highlight text */
-	-moz-user-select: none;
-	-webkit-user-select: none;
-	-ms-user-select:none;
+	-moz-user-select: none; 
+	-webkit-user-select: none; 
+	-ms-user-select:none; 
 	user-select:none;
-
+	
 	position:relative;
 }
 
-.adc-ranking-isotope .statement_text
-{
+.adc-ranking-isotope .statement_text 
+{ 
 	display:block;
 	padding:10px;
-  padding-right: 40px !important;
 }
 .adc-ranking-isotope .statement img {
-	display:inline-block;
+	display:inline-block; 
 	margin:5px;
 }
-.adc-ranking-isotope .statement img.left
+.adc-ranking-isotope .statement img.left 
 {
     float:left;
 }
-.adc-ranking-isotope .statement img.right
+.adc-ranking-isotope .statement img.right 
 {
     float:right;
 }
 
-.adc-ranking-isotope .rank_text
+.adc-ranking-isotope .rank_text 
 {
     /* Element */
     display:inline-block;
@@ -90,15 +88,21 @@
 	width:15px;
 	position:absolute;
 	top:0px; right:0px;
-
-    /* Typo */
+	
     font-weight:bold;
 }
 
 .adc-ranking-isotope .rerankContainer { display:block; width:100%; height:100%; text-align:center; position:absolute; top:0px; left:0px; }
-.adc-ranking-isotope .upRank {
-	display:inline-block; width:20px; height:100%; background-image:url(uparrow.png); background-position:top; background-repeat:no-repeat; margin-right:5px; zoom:1; *display:inline;
+.adc-ranking-isotope .upRank { 
+	display:inline-block; width:20px; height:100%; background-image:url(uparrow.png); background-position:top; background-repeat:no-repeat; margin-right:5px; zoom:1; *display:inline;  
 }
-.adc-ranking-isotope .downRank {
-	display:inline-block; width:20px; height:100%; background-image:url(downarrow.png); background-position:top; background-repeat:no-repeat; zoom:1; *display:inline;
+.adc-ranking-isotope .downRank { 
+	display:inline-block; width:20px; height:100%; background-image:url(downarrow.png); background-position:top; background-repeat:no-repeat; zoom:1; *display:inline; 
+}
+
+.adc-ranking-isotope .otherText { 
+	display:block;
+	margin:10px;
+	line-height:1.2;
+	padding:5px;
 }

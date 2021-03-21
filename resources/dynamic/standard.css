@@ -52,6 +52,14 @@ Dim controlAlign =CurrentADC.PropValue("controlAlign")
 Dim rankMoveArrowColour =CurrentADC.PropValue("rankMoveArrowColour")
 
 Dim fontSize =CurrentADC.PropValue("fontSize")
+
+Dim otherColourPrimary =CurrentADC.PropValue("otherColourPrimary")
+Dim otherFontColour =CurrentADC.PropValue("otherFontColour")
+Dim otherBorderColour =CurrentADC.PropValue("otherBorderColour")
+Dim otherBorderThickness =CurrentADC.PropValue("otherBorderThickness")
+Dim otherBorderStyle =CurrentADC.PropValue("otherBorderStyle")
+Dim otherShadow =CurrentADC.PropValue("otherShadow")
+Dim otherBorderRadius =CurrentADC.PropValue("otherBorderRadius")
 %}
 
 /* General */
@@ -230,3 +238,28 @@ Dim fontSize =CurrentADC.PropValue("fontSize")
 }
 
 #adc_{%= CurrentADC.InstanceId%} .upRank, #adc_{%= CurrentADC.InstanceId%} .downRank { background-position:{%= rankMoveArrowColour%}; }
+
+#adc_{%= CurrentADC.InstanceId%} .otherText { 
+	
+	font-size:{%= fontSize%};
+	color: rgb({%= otherFontColour%});
+	
+	/* Decoration */
+	{% IF CurrentADC.PropValue("otherBorderThickness") = "none" Then %}
+		border: none;
+	{% Else %}
+		border: {%= otherBorderThickness%} {%= otherBorderStyle%} rgb({%= otherBorderColour%});
+	{% EndIF %}	
+	background-color: rgb({%= otherColourPrimary%});
+	
+	/* Effects */
+	-webkit-border-radius:	{%= otherBorderRadius%}; 
+	-moz-border-radius:		{%= otherBorderRadius%}; 
+	-khtml-border-radius:	{%= otherBorderRadius%}; 
+	border-radius:			{%= otherBorderRadius%};
+	
+	-webkit-box-shadow: {%= otherShadow%};
+	-moz-box-shadow: {%= otherShadow%};
+	box-shadow: {%= otherShadow%};
+	
+}

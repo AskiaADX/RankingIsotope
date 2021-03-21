@@ -31,6 +31,6 @@ For i = 1 To ar.Count
         %}
     	<p>{%:= rcaption %}</p>
 	</td>
-	<td align="center"><input type="number" name="{%= inputName%}" id="{%= inputId %}" min="1" max="{%= ar.Count %}" value="{%= inputValue %}" /></td></tr>
+	<td align="center"><input type="number" aria-label="Number" name="{%= inputName%}" id="{%= inputId %}" min="1" max="{%= ar.Count %}" value="{%= inputValue %}" /></td></tr>
 {% Next %}
 </table>
