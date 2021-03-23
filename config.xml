@@ -7,7 +7,7 @@
   <info>
     <name>RankingIsotope</name>
     <guid>94ad077c-91a5-4aba-8a20-d5ed63251044</guid>
-    <version>4.0.0</version>
+    <version>4.0.1</version>
     <date>2020-10-08</date>
     <description><![CDATA[]]></description>
     <company>Askia</company>
@@ -122,16 +122,6 @@
       </property>
     </category>
     <category id="other" name="Other Response">
-      <property xsi:type="standardProperty" id="otherQID" name="Other Question ID" type="string" mode="static">
-        <description><![CDATA[
-          The ids of the other responses seperated by commas
-        ]]></description>
-        <value></value>
-      </property>
-      <property xsi:type="standardProperty" id="otherRID" name="Other Response ID" type="string" mode="static" require="false" visible="true">
-        <description><![CDATA[The ids of the other responses separated by commas]]></description>
-        <value><![CDATA[5]]></value>
-      </property>
       <property xsi:type="standardProperty" id="otherColourPrimary" name="Other Background Colour" type="color" mode="dynamic" require="true" visible="false">
         <description><![CDATA[Background colour of the other response]]></description>
         <value><![CDATA[{%= Theme.WhiteColor %}]]></value>

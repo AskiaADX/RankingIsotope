@@ -24,8 +24,12 @@ For i = 1 To ar.Count
 	<span class="statement_text">{%:= caption %}</span>
 	<div style="clear:both"></div>
 	{% If (ar[i].isOpen = True) Then %}
-			<div><textarea aria-label="Other" class="otherText" id="{%= ar[i].OpenQuestion.InputName() %}" name="{%= ar[i].OpenQuestion.InputName() %}"
-        data-id="{%= i %}" unselectable='off' onselectstart='return true;'>{%= ar[i].OpenQuestion.inputValue() %}</textarea></div>
+			<div>
+			<textarea style="display:none;" class="otherHidden" id="{%= ar[i].OpenQuestion.InputName() %}" name="{%= ar[i].OpenQuestion.InputName() %}"
+         unselectable='off' onselectstart='return true;'>{%= ar[i].OpenQuestion.inputValue() %}</textarea>
+			<textarea aria-label="Other" class="otherText" id="other{%= ar[i].OpenQuestion.InputName() %}" name="other{%= ar[i].OpenQuestion.InputName() %}"
+        data-id="{%= i %}" unselectable='off' onselectstart='return true;'>{%= ar[i].OpenQuestion.inputValue() %}</textarea>
+		</div>
 			<div style="clear:both"></div>
 	{% EndIF %}
 </div>

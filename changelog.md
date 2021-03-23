@@ -21,3 +21,4 @@ v2.0.0 - theme implementation
 v3.0.0 - AvailableAnswers
 
 v4.0.0 - Semi-opens
+v4.0.1 - Semi-opens trimed

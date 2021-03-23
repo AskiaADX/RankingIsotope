@@ -1,5 +1,33 @@
 (function ($) {
 	"use strict";
+	
+	// Polyfill: Add a getElementsByClassName function IE < 9
+    function polyfillGetElementsByClassName() {
+        if (!document.getElementsByClassName) {
+            document.getElementsByClassName = function(search) {
+                var d = document, elements, pattern, i, results = [];
+                if (d.querySelectorAll) { // IE8
+                    return d.querySelectorAll("." + search);
+                }
+                if (d.evaluate) { // IE6, IE7
+                    pattern = ".//*[contains(concat(' ', @class, ' '), ' " + search + " ')]";
+                    elements = d.evaluate(pattern, d, null, 0, null);
+                    while ((i = elements.iterateNext())) {
+                        results.push(i);
+                    }
+                } else {
+                    elements = d.getElementsByTagName("*");
+                    pattern = new RegExp("(^|\\s)" + search + "(\\s|$)");
+                    for (var j = 0, l = elements.length; j < l; j++) {
+                        if ( pattern.test(elements[j].className) ) {
+                            results.push(elements[j]);
+                        }
+                    }
+                }
+                return results;
+            };
+        }
+	}
 
 	$.fn.adcRanking = function adcRanking(options) {
 
@@ -30,8 +58,7 @@
 		
 		// Other
 		$(this).parents('.controlContainer').find('.statement .otherText').width( $(this).find('.statement').innerWidth() - 30 ).hide();
-		//OLD if ( $( '#'+options.otherQID ).val() !== '' ) $(this).parents('.controlContainer').find('.otherText').val( $( '#'+options.otherQID ).val() );
-		//OLD $( '#'+options.otherQID ).hide();
+
 		var i;
 		for (i = 0; i < otherQIDarray.length; ++i) {
 			if ( $( '#'+otherQIDarray[i] ).val() !== '' ) 
@@ -58,12 +85,43 @@
 			},
 			total_images = $container.find("img").length,
 			images_loaded = 0;
+			
+			polyfillGetElementsByClassName();
+			var container = document.getElementById("adc_" + options.instanceId);
+			var otherTextItems =  [].slice.call(container.getElementsByClassName('otherText'));
+			
+			for ( i=0; i<otherTextItems.length; i++ ) {
+            otherTextItems[i].onclick = function(e) {
+				e.stopPropagation();
+			};
+			addEvent(otherTextItems[i], 'input',
+                         (function (passedInElement) {
+                    return function (e) {
+                        onInputSemiOpen(e, passedInElement);
+                    };
+                }(this)));
+        }
+		
+		 function addEvent(el, type, handler) {
+            if (el.attachEvent) el.attachEvent('on'+type, handler); else el.addEventListener(type, handler);
+        }
+	
+    function myTrim(x) {
+        return x.trim();
+      }
+		
+  function onInputSemiOpen (event, that) {
+    var el = event.target || event.srcElement;
+    if (el.className === 'otherText') {
+        el.previousElementSibling.value = myTrim(el.value);
+    }
+}
+
 
 		// Select a statement
 		// @this = target node
 		function selectStatement(e) {
 			
-			//console.log ( (!$(e.target).hasClass('upRank') && !$(e.target).hasClass('downRank')) + ":" + !$(e.target).hasClass('upRank') +":"+ !$(e.target).hasClass('downRank'));
 			if ( !$(e.target).hasClass('upRank') && !$(e.target).hasClass('downRank') ) {
 			
 				var $target = $(this),
@@ -84,14 +142,12 @@
 								.find('.rank_text').html(''); // Add rank value
 								
 							$(this).parents('.controlContainer').find('.otherText').val('');
+							$(this).parents('.controlContainer').find('.otherHidden').val('');
 							for (i = 0; i < otherQIDarray.length; ++i) {
 								$( '#'+otherQIDarray[i] ).val('');
 							}
 							$(this).parents('.controlContainer').find('.otherText').hide();
 							
-							/*var otherID = $.inArray( String(parseInt($(this).attr('data-index'))), otherRIDarray );
-							if ( $.inArray( String(parseInt($(this).attr('data-index'))), otherRIDarray ) != -1 ) 
-								$(this).find('.otherText').show().focus();*/
 						}
 					} else {
 						if (dkselected){ 
@@ -138,6 +194,7 @@
 						var otherID = $.inArray( String(parseInt($(this).attr('data-index'))), otherRIDarray );
 						$(this).find('.otherText').hide();
 						$(this).find('.otherText').val('');
+						$(this).find('.otherHidden').val('');
 						$( '#'+otherQIDarray[otherID] ).val('');
 					}
 
@@ -157,16 +214,13 @@
                 }
 			}
 			
-			/*if ( showRankMoveControls && (navigator.userAgent.match(/iPhone/i)) || (navigator.userAgent.match(/iPod/i)) || (navigator.userAgent.match(/iPad/i)) ) {
-				//showMoveOptions();
-			}*/
 		}
 		
 		// Select a statement
 		// @this = target node
 		function deselectAllStatements() {
 			dkselected = false;
-			//$container.on('click', '.statement', selectStatement);
+
 			$container.find( '.statement' ).each(function(i, obj) {
 			
 				var $target = $(obj),
@@ -175,15 +229,7 @@
 					value	= parseInt($input.val(), 10);
 
 				if (!value) { // item is currently UNranked
-					/*
-					if ((rankCount + 1) <= options.setMax) {
-						rankCount += 1;
-						$input.val(rankCount);
 
-						$target.addClass('ranked')                // Add ranked class
-							.find('.rank_text').html(rankCount); // Add rank value
-					}
-					*/
 				} else { // item is currently ranked
 
 					rankCount -= 1;
@@ -219,7 +265,7 @@
 		
 		// Check for missing images and resize
 		$container.find('.statement img').each(function forEachImage() {
-			//if ( $(this).attr('src') == '' ) /*$(this).remove();*/alert("foo");
+			
 			var size = {
 				width: $(this).width(),
 				height: $(this).height()
@@ -441,7 +487,7 @@
 		}
 		
 		function writeText() {
-			$( '#'+otherQIDarray[parseInt($(this).data('id'))-1] ).val( $(this).val() );
+			$( '#'+otherQIDarray[parseInt($(this).data('id'))-1] ).val( $(this).val().trim() );
             if (window.askia 
                 && window.arrLiveRoutingShortcut 
                 && window.arrLiveRoutingShortcut.length > 0
@@ -479,14 +525,11 @@
 					images_loaded++;
 					if (images_loaded >= total_images) {
 						
-						// now all images are loaded.
-						// $container.css('visibility','visible');
-	
 					}
 				}).attr("src", fakeSrc);
 			});
 		} else {
-			// $container.css('visibility','visible');
+
 		}
         
         setTimeout(function(){ document.querySelector("#adc_" + options.instanceId).style.visibility = 'visible'; }, 300);
