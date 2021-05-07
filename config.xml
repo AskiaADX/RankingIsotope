@@ -7,8 +7,8 @@
   <info>
     <name>RankingIsotope</name>
     <guid>94ad077c-91a5-4aba-8a20-d5ed63251044</guid>
-    <version>4.0.1</version>
-    <date>2020-10-08</date>
+    <version>4.0.2</version>
+    <date>2021-04-19</date>
     <description><![CDATA[]]></description>
     <company>Askia</company>
     <author><![CDATA[Paul Ferreira <paulf@askia.com>  Jerome Duparc <jeromed@askia.com>]]></author>
@@ -227,10 +227,16 @@
         <description><![CDATA[When set this will force the height of the reponses]]></description>
         <value><![CDATA[1.2]]></value>
       </property>
+
       <property xsi:type="standardProperty" id="maxRankedItems" name="Max Number of Items to be Ranked" type="string" mode="static" require="false" visible="true">
         <description><![CDATA[Set max number of items to be ranked]]></description>
         <value></value>
       </property>
+      <property xsi:type="standardProperty" id="minRankedItems" name="Min Number of Items to be Ranked" type="string" mode="static" require="false" visible="true">
+        <description><![CDATA[Set min number of items to be ranked]]></description>
+        <value></value>
+      </property>
+
       <property xsi:type="standardProperty" id="displayResponseText" name="Display Response Text" type="string" mode="static" require="false" visible="true">
         <description><![CDATA[Display response text]]></description>
         <value><![CDATA[block]]></value>
