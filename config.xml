@@ -7,8 +7,8 @@
   <info>
     <name>RankingIsotope</name>
     <guid>94ad077c-91a5-4aba-8a20-d5ed63251044</guid>
-    <version>4.0.2</version>
-    <date>2021-04-19</date>
+    <version>4.1.0</version>
+    <date>2021-10-13</date>
     <description><![CDATA[]]></description>
     <company>Askia</company>
     <author><![CDATA[Paul Ferreira <paulf@askia.com>  Jerome Duparc <jeromed@askia.com>]]></author>
@@ -33,18 +33,18 @@
       <content fileName="standard.html" type="html" mode="dynamic" position="placeholder" />
       <content fileName="standard_numeric.html" type="html" mode="dynamic" position="none" />
       <content fileName="standard_multiple.html" type="html" mode="dynamic" position="none" />
-      <content fileName="es5-shim.min.js" type="javascript" mode="share" position="foot">
+      <content fileName="es5-shim.min.js" type="javascript" mode="static" position="foot">
         <yield><![CDATA[
 
           <!--[if lt IE 10]>
-            <script type="text/javascript" src="{%= CurrentADC.URLTo("share/es5-shim.min.js") %}"></script>
+            <script type="text/javascript" src="{%= CurrentADC.URLTo("static/es5-shim.min.js") %}"></script>
           <![endif]-->
 
         ]]></yield>
       </content>
-      <content fileName="jquery-1.11.1.min.js" type="javascript" mode="share" position="head" />
-      <content fileName="jquery-ui-1.10.4.custom.min.js" type="javascript" mode="share" position="head" />
-      <content fileName="jquery.ui.touch-punch.min.js" type="javascript" mode="share" position="head" />
+      <content fileName="jquery-1.11.1.min.js" type="javascript" mode="static" position="head" />
+      <content fileName="jquery-ui-1.10.4.custom.min.js" type="javascript" mode="static" position="head" />
+      <content fileName="jquery.ui.touch-punch.min.js" type="javascript" mode="static" position="head" />
       <content fileName="jquery.isotope.min.js" type="javascript" mode="static" position="head" />
       <content fileName="ranking.js" type="javascript" mode="static" position="head" />
       <content fileName="standard.js" type="javascript" mode="dynamic" position="foot" />
