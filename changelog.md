@@ -19,7 +19,8 @@ v2.0.0 - theme implementation
   v2.0.6 - Fixed On by If
 
 v3.0.0 - AvailableAnswers
-
 v4.0.0 - Semi-opens
-v4.0.1 - Semi-opens trimed
-v4.0.2 - Added a property for Minimum Number of Items to be Ranked
+  v4.0.1 - Semi-opens trimed
+  v4.0.2 - Added a property for Minimum Number of Items to be Ranked
+v4.1.0
+  v4.1.1 - Fixed - indexOf error
