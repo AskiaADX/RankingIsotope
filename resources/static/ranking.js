@@ -54,7 +54,7 @@
         (options.instanceId = options.instanceId || 1);
 		(options.width = options.width || "auto");
 		(options.height = options.height || "auto");
-		(options.setMax = options.setMax || $(this).children('.statement').size());
+		(options.setMax = options.setMax || $(this).children('.statement').length);
 		(options.setMin = options.setMin || 0);
         (options.currentQuestion = options.currentQuestion || '');
 
@@ -83,9 +83,11 @@
 
 		var i;
 		for (i = 0; i < otherQIDarray.length; ++i) {
-			if ( $( '#'+otherQIDarray[i] ).val() !== '' )
-				$(this).parents('.controlContainer').find('.statement[data-index="'+otherRIDarray[i]+'"] .otherText').val( $( '#'+otherQIDarray[i] ).val()).show();
-			$( '#'+otherQIDarray[i] ).hide();
+			if ( otherQIDarray[i] ) {
+				if ( $( '#'+otherQIDarray[i] ).val() !== '' )
+					$(this).parents('.controlContainer').find('.statement[data-index="'+otherRIDarray[i]+'"] .otherText').val( $( '#'+otherQIDarray[i] ).val()).show();
+				$( '#'+otherQIDarray[i] ).hide();
+			}
 		}
 
 		// List of items collection of object {caption : 'The caption', element : jQueryObject}
@@ -97,8 +99,8 @@
 				itemSelector: '.statement',
 				layoutMode: options.layout,
 				getSortData: {
-					rank: function($elem) {
-						var index = $elem.data('index'),
+					rank: function(elem) {
+						var index = $(elem).data('index'),
 							item = items[index];
 						return parseInt(item.element.val(), 10) || 999;
 					}
@@ -166,7 +168,7 @@
 							$(this).parents('.controlContainer').find('.otherText').val('');
 							$(this).parents('.controlContainer').find('.otherHidden').val('');
 							for (i = 0; i < otherQIDarray.length; ++i) {
-								$( '#'+otherQIDarray[i] ).val('');
+								if(otherQIDarray[i]) $( '#'+otherQIDarray[i] ).val('');
 							}
 							$(this).parents('.controlContainer').find('.otherText').hide();
 
@@ -184,7 +186,7 @@
 
 							var otherID = $.inArray( String(parseInt($(this).attr('data-index'))), otherRIDarray );
 							if ( $.inArray( String(parseInt($(this).attr('data-index'))), otherRIDarray ) != -1 )
-								$(this).find('.otherText').show().focus();
+								$(this).find('.otherText').show().trigger('focus');
 						}
 					}
 
@@ -384,8 +386,8 @@
 			var marginAdjustmentTB = Math.floor( ($('.rerankContainer').outerHeight() - 17 )/2 ),
 				marginAdjustmentLR = Math.floor( ($('.rerankContainer').parent('.statement').width() - 45 )/2 );
 			$('.rerankContainer').css({ 'margin':marginAdjustmentTB + 'px ' + marginAdjustmentLR + 'px ' + marginAdjustmentTB + 'px ' + marginAdjustmentLR + 'px ' }).height(17).width(45);
-			$('.upRank').click(rankup);
-			$('.downRank').click(rankdown);
+			$('.upRank').on('click', rankup);
+			$('.downRank').on('click', rankdown);
 			// hide ranking options after 2 seconds
 			setTimeout( hideMoveOptions, 2000);
 		}
@@ -532,24 +534,24 @@
 
 		}
 
-		$( '.otherText' ).focus(function(srcc) {
+		$( '.otherText' ).on('focus', function(srcc) {
 			if ($(this).val() == $(this)[0].title) {
 				$(this).removeClass("defaultTextActive");
 				$(this).val("");
 			}
 		});
 
-		$( '.otherText' ).blur(function() {
+		$( '.otherText' ).on('blur', function() {
 			if ($(this).val() == "") {
 				$(this).addClass("defaultTextActive");
 				$(this).val($(this)[0].title);
 			}
 		});
 
-		$(this).parents('.controlContainer').find( '.otherText' ).blur();
+		$(this).parents('.controlContainer').find( '.otherText' ).trigger('blur');
 
 
-		$(this).parents('.controlContainer').find( '.otherText' ).keyup(writeText).click(function(e) {
+		$(this).parents('.controlContainer').find( '.otherText' ).on('keyup', writeText).on('click', function(e) {
 			e.stopPropagation();
 		});
 

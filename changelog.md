@@ -11,16 +11,17 @@ v1.0.0
   v1.1.7 - fixed input text not shown when going back in the screen
   v1.1.7 - added animatedResponses param
 
-v2.0.0 - theme implementation
+v2.0.0   - theme implementation
   v2.0.2 - Fixed visibility of the control
   v2.0.3 - Fixed hover styling for small screen
   v2.0.4 - Added compatibility with multiple
   v2.0.5 - Added management of 2 exclusives responses
   v2.0.6 - Fixed On by If
 
-v3.0.0 - AvailableAnswers
-v4.0.0 - Semi-opens
+v3.0.0   - AvailableAnswers
+v4.0.0   - Semi-opens
   v4.0.1 - Semi-opens trimed
   v4.0.2 - Added a property for Minimum Number of Items to be Ranked
 v4.1.0
   v4.1.1 - Fixed - indexOf error
+v4.2.0   - Libraries updated
